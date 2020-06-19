@@ -1,0 +1,20 @@
+{
+  "name": "avengerweb/bmanager",
+  "authors": [
+    {
+      "name": "avengerweb",
+      "email": "avengerweb@yandex.ru"
+    }
+  ],
+  "require": {
+    "nesbot/carbon": "^2.35",
+    "league/flysystem": "^1.0",
+    "symfony/process": "^5.1",
+    "vlucas/phpdotenv": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
