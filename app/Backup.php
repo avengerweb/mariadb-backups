@@ -79,14 +79,12 @@ class Backup
             '--user=root'
         ]);
 
+        $process->setTimeout(60 * 60);
+
         $this->log("Execute: " . $process->getCommandLine());
 
         $code = $process->run(function ($type, $buffer) {
-            if (Process::ERR === $type) {
-                echo 'ERR > ' . $buffer;
-            } else {
-                echo 'OUT > ' . $buffer;
-            }
+            echo $buffer;
         });
 
         return $code == 0;
@@ -120,14 +118,12 @@ class Backup
             '--user=root'
         ]);
 
+        $process->setTimeout(60 * 60);
+
         $this->log("Execute: " . $process->getCommandLine());
 
         $code = $process->run(function ($type, $buffer) {
-            if (Process::ERR === $type) {
-                echo 'ERR > ' . $buffer;
-            } else {
-                echo 'OUT > ' . $buffer;
-            }
+            echo $buffer;
         });
 
         return $code == 0;
