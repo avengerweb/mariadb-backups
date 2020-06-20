@@ -71,14 +71,13 @@ class Backup
 
     private function createFullWeeklyBackup(): bool
     {
-        $week = $this->path . DIRECTORY_SEPARATOR . $this->getWeekDirectory();
-        $target = $week . DIRECTORY_SEPARATOR . self::FULL_BACKUP;
+        $target = $this->getWeekDirectory().DIRECTORY_SEPARATOR.self::FULL_BACKUP;
 
         // mariabackup --backup --target-dir=/mnt/storage/mariadb/full1 --user=root
         $process = new Process([
             'mariabackup',
             '--backup',
-            '--target-dir=' . $week . DIRECTORY_SEPARATOR . self::FULL_BACKUP,
+            '--target-dir='.$this->path.DIRECTORY_SEPARATOR.$target,
             '--user=root'
         ]);
 
@@ -116,15 +115,15 @@ class Backup
 
     private function createTodayBackup(): bool
     {
-        $week = $this->path . DIRECTORY_SEPARATOR . $this->getWeekDirectory();
-        $target = $week . DIRECTORY_SEPARATOR . $this->today();
+        $week = $this->getWeekDirectory();
+        $target = $week.DIRECTORY_SEPARATOR.$this->today();
 
         // mariabackup --backup --target-dir=/mnt/storage/mariadb/inc1_3 --incremental-basedir=/mnt/storage/mariadb/full1 --user=root
         $process = new Process([
             'mariabackup',
             '--backup',
-            '--target-dir=' . $target,
-            '--incremental-basedir=' . $week . DIRECTORY_SEPARATOR . self::FULL_BACKUP,
+            '--target-dir=' . $this->path.DIRECTORY_SEPARATOR.$target,
+            '--incremental-basedir=' . $this->path.DIRECTORY_SEPARATOR.$week.DIRECTORY_SEPARATOR.self::FULL_BACKUP,
             '--user=root'
         ]);
 
